@@ -174,3 +174,5 @@ cython_debug/
 .pypirc
 
 denoise_env/*
+
+artifacts/*

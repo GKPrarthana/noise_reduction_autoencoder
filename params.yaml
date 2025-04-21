@@ -1,0 +1,3 @@
+IMAGE_SIZE: [128, 128]
+NOISE_FACTOR: 0.1
+NOISE_TYPE: "gaussian"  # Options: "gaussian", "salt_pepper"
