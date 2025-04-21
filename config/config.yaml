@@ -7,3 +7,6 @@ data_ingestion:
   unzip_dir: artifacts/data_ingestion
   noisy_dir: artifacts/data_ingestion/noisy_images
 
+prepare_base_model:
+  root_dir: artifacts/models
+  base_model_path: artifacts/models/base_autoencoder.keras

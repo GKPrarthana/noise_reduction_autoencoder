@@ -10,3 +10,9 @@ class DataIngestionConfig:
     unzip_dir: Path
     noisy_dir: Path
     params: dict
+    
+@dataclass(frozen=True)
+class PrepareBaseModelConfig:
+    root_dir: Path
+    base_model_path: Path
+    params: dict

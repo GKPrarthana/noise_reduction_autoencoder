@@ -1,3 +1,9 @@
 IMAGE_SIZE: [128, 128]
 NOISE_FACTOR: 0.1
 NOISE_TYPE: "gaussian"  # Options: "gaussian", "salt_pepper"
+MODEL:
+  FILTERS: [32, 64]
+  KERNEL_SIZE: [3, 3]
+  LEARNING_RATE: 0.001
+  LOSS: "mse"
+  BATCH_SIZE: 32  # For later training

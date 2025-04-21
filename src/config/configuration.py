@@ -1,7 +1,7 @@
 #update config manager
 from src.constants import *
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import DataIngestionConfig
+from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig
 
 class ConfigurationManager:
     def __init__(
@@ -26,5 +26,14 @@ class ConfigurationManager:
             local_data_file=Path(config.local_data_file),
             unzip_dir=Path(config.unzip_dir) ,
             noisy_dir=Path(config.noisy_dir),
+            params=self.params
+        )
+        
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+        create_directories([Path(config.root_dir)])
+        return PrepareBaseModelConfig(
+            root_dir=Path(config.root_dir),
+            base_model_path=Path(config.base_model_path),
             params=self.params
         )
