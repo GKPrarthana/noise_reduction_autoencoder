@@ -1,6 +1,7 @@
 from src import logger
 from src.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from src.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
+from src.pipeline.stage_03_data_splitting import DataSplittingPipeline
 
 STAGE_NAME = "Data Ingestion Stage"
 try:
@@ -19,6 +20,19 @@ if __name__ == '__main__':
         logger.info(f"*******************")
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = PrepareBaseModelTrainingPipeline()
+        obj.main()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+        logger.exception(e)
+        raise e
+    
+STAGE_NAME = "Data Splitting"
+
+if __name__ == '__main__':
+    try:
+        logger.info(f"*******************")
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+        obj = DataSplittingPipeline()
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:

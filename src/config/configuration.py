@@ -1,7 +1,7 @@
 #update config manager
 from src.constants import *
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig
+from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, DataSplittingConfig
 
 class ConfigurationManager:
     def __init__(
@@ -35,5 +35,26 @@ class ConfigurationManager:
         return PrepareBaseModelConfig(
             root_dir=Path(config.root_dir),
             base_model_path=Path(config.base_model_path),
+            params=self.params
+        )
+        
+    def get_data_splitting_config(self) -> DataSplittingConfig:
+        config = self.config.data_splitting
+        create_directories([
+            Path(config.root_dir), Path(config.train_clean_dir), Path(config.train_noisy_dir),
+            Path(config.val_clean_dir), Path(config.val_noisy_dir),
+            Path(config.test_clean_dir), Path(config.test_noisy_dir)
+        ])
+        return DataSplittingConfig(
+            root_dir=Path(config.root_dir),
+            train_clean_dir=Path(config.train_clean_dir),
+            train_noisy_dir=Path(config.train_noisy_dir),
+            val_clean_dir=Path(config.val_clean_dir),
+            val_noisy_dir=Path(config.val_noisy_dir),
+            test_clean_dir=Path(config.test_clean_dir),
+            test_noisy_dir=Path(config.test_noisy_dir),
+            split_ratios=config.split_ratios,
+            clean_data_source=Path(config.clean_data_source),
+            noisy_data_source=Path(config.noisy_data_source),
             params=self.params
         )

@@ -10,3 +10,15 @@ data_ingestion:
 prepare_base_model:
   root_dir: artifacts/models
   base_model_path: artifacts/models/base_autoencoder.keras
+
+data_splitting:
+  root_dir: artifacts/data
+  train_clean_dir: artifacts/data/train/clean
+  train_noisy_dir: artifacts/data/train/noisy
+  val_clean_dir: artifacts/data/val/clean
+  val_noisy_dir: artifacts/data/val/noisy
+  test_clean_dir: artifacts/data/test/clean
+  test_noisy_dir: artifacts/data/test/noisy
+  split_ratios: [0.7, 0.15, 0.15]
+  clean_data_source: artifacts/data_ingestion/pneumonia_xray
+  noisy_data_source: artifacts/data_ingestion/noisy_images

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-
+from typing import List
 
 @dataclass(frozen=True)
 class DataIngestionConfig:
@@ -15,4 +15,18 @@ class DataIngestionConfig:
 class PrepareBaseModelConfig:
     root_dir: Path
     base_model_path: Path
+    params: dict
+    
+@dataclass(frozen=True)
+class DataSplittingConfig:
+    root_dir: Path
+    train_clean_dir: Path
+    train_noisy_dir: Path
+    val_clean_dir: Path
+    val_noisy_dir: Path
+    test_clean_dir: Path
+    test_noisy_dir: Path
+    split_ratios: List[float]
+    clean_data_source: Path
+    noisy_data_source: Path
     params: dict
