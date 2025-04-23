@@ -1,7 +1,7 @@
 #update config manager
 from src.constants import *
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, DataSplittingConfig
+from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, DataSplittingConfig, DataPreprocessingConfig
 
 class ConfigurationManager:
     def __init__(
@@ -58,3 +58,13 @@ class ConfigurationManager:
             noisy_data_source=Path(config.noisy_data_source),
             params=self.params
         )
+        
+    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
+        config = self.config.data_preprocessing
+        data_preprocessing_config = DataPreprocessingConfig(
+            data_dir=config.data_dir,
+            image_size=config.image_size,
+            batch_size=config.batch_size,
+            shuffle_buffer_size=config.shuffle_buffer_size
+        )
+        return data_preprocessing_config

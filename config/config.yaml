@@ -22,3 +22,10 @@ data_splitting:
   split_ratios: [0.7, 0.15, 0.15]
   clean_data_source: artifacts/data_ingestion/pneumonia_xray
   noisy_data_source: artifacts/data_ingestion/noisy_images
+
+
+data_preprocessing:
+  data_dir: artifacts/data
+  image_size: 128
+  batch_size: 32
+  shuffle_buffer_size: 1000

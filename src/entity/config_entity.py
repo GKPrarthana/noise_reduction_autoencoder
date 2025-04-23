@@ -30,3 +30,10 @@ class DataSplittingConfig:
     clean_data_source: Path
     noisy_data_source: Path
     params: dict
+    
+@dataclass(frozen=True)
+class DataPreprocessingConfig:
+    data_dir: Path
+    image_size: int
+    batch_size: int
+    shuffle_buffer_size: int
