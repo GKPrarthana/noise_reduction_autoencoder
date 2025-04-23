@@ -29,3 +29,8 @@ data_preprocessing:
   image_size: 128
   batch_size: 32
   shuffle_buffer_size: 1000
+
+model_training:
+  model_dir: artifacts/models
+  image_size: 128
+  epochs: 20

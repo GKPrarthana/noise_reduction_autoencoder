@@ -1,7 +1,12 @@
 #update config manager
 from src.constants import *
 from src.utils.common import read_yaml, create_directories
-from src.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, DataSplittingConfig, DataPreprocessingConfig
+from src.entity.config_entity import (DataIngestionConfig, 
+                                      PrepareBaseModelConfig, 
+                                      DataSplittingConfig, 
+                                      DataPreprocessingConfig,
+                                      ModelTrainingConfig,
+                                    )
 
 class ConfigurationManager:
     def __init__(
@@ -68,3 +73,13 @@ class ConfigurationManager:
             shuffle_buffer_size=config.shuffle_buffer_size
         )
         return data_preprocessing_config
+    
+    def get_model_training_config(self) -> ModelTrainingConfig:
+        config = self.config.model_training
+        create_directories([config.model_dir])
+        model_training_config = ModelTrainingConfig(
+            model_dir=Path(config.model_dir),
+            image_size=config.image_size,
+            epochs=config.epochs
+        )
+        return model_training_config

@@ -37,3 +37,9 @@ class DataPreprocessingConfig:
     image_size: int
     batch_size: int
     shuffle_buffer_size: int
+    
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    model_dir: Path
+    image_size: int
+    epochs: int
