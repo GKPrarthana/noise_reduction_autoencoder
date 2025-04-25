@@ -43,3 +43,12 @@ class ModelTrainingConfig:
     model_dir: Path
     image_size: int
     epochs: int
+    
+@dataclass(frozen=True)
+class EvaluationConfig:
+    path_of_model: Path
+    test_data: dict  # Preprocessed test dataset
+    all_params: dict
+    mlflow_uri: str
+    params_image_size: int
+    params_batch_size: int

@@ -6,7 +6,10 @@ from src.entity.config_entity import (DataIngestionConfig,
                                       DataSplittingConfig, 
                                       DataPreprocessingConfig,
                                       ModelTrainingConfig,
+                                      EvaluationConfig
                                     )
+from src.components.data_preprocessing import DataPreprocessing
+
 
 class ConfigurationManager:
     def __init__(
@@ -83,3 +86,19 @@ class ConfigurationManager:
             epochs=config.epochs
         )
         return model_training_config
+    
+    def get_evaluation_config(self) -> EvaluationConfig:
+        # Load the preprocessed test dataset
+        data_preprocessing_config = self.get_data_preprocessing_config()
+        data_preprocessing = DataPreprocessing(config=data_preprocessing_config)
+        datasets = data_preprocessing.preprocess()
+
+        eval_config = EvaluationConfig(
+            path_of_model=Path("artifacts/models/autoencoder_final.h5"),  # Updated to .h5
+            test_data=datasets["test"],
+            mlflow_uri="https://dagshub.com/PrarthanaGanegama/noise_reduction_autoencoder.mlflow",
+            all_params=self.params,
+            params_image_size=self.config.data_preprocessing.image_size,
+            params_batch_size=self.config.data_preprocessing.batch_size
+        )
+        return eval_config

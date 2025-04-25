@@ -4,6 +4,7 @@ from src.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPip
 from src.pipeline.stage_03_data_splitting import DataSplittingPipeline
 from src.pipeline.stage_04_data_preprocessing import DataPreprocessingPipeline
 from src.pipeline.stage_05_model_training import ModelTrainingPipeline
+from src.pipeline.stage_06_model_evaluation_with_mlflow import ModelEvaluationPipeline
 
 STAGE_NAME = "Data Ingestion Stage"
 try:
@@ -63,6 +64,19 @@ if __name__ == '__main__':
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = ModelTrainingPipeline()
         history = obj.main()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+        logger.exception(e)
+        raise e
+    
+STAGE_NAME = "Model Evaluation"
+
+if __name__ == '__main__':
+    try:
+        logger.info(f"*******************")
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+        obj = ModelEvaluationPipeline()
+        obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:
         logger.exception(e)

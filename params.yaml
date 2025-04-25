@@ -1,9 +1,14 @@
 IMAGE_SIZE: [128, 128]
-NOISE_FACTOR: 0.1
-NOISE_TYPE: "gaussian"  # Options: "gaussian", "salt_pepper"
+NOISE_FACTOR: 0.2
+NOISE_TYPE: "gaussian"  # Switch back to gaussian
 MODEL:
-  FILTERS: [32, 64]
+  ARCHITECTURE: "unet"
+  FILTERS: [64, 128, 256]
   KERNEL_SIZE: [3, 3]
-  LEARNING_RATE: 0.001
-  LOSS: "mse"
-  BATCH_SIZE: 32  # For later training
+  LEARNING_RATE: 0.001  # Increased from 0.0005
+  LOSS: "mse_ssim"
+  LOSS_ALPHA: 0.2  # Reduced from 0.3
+  BATCH_SIZE: 32
+  EPOCHS: 40  # Increased from 30
+  DROPOUT_RATE: 0.1
+  USE_BATCH_NORM: true  # New parameter for batch normalization
